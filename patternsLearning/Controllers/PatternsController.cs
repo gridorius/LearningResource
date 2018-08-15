@@ -12,13 +12,13 @@ namespace patternsLearning.Controllers
         // GET: Patterns
         public ActionResult Index()
         {
-            siteDbEntities db;
+            siteDbEntities1 db;
             string pattern = "Паттерны проектирования";
             string solid = "Принципы SOLID";
             string otherPatt = "Другие паттерны проектирования";
             try
             {
-                db = new siteDbEntities();
+                db = new siteDbEntities1();
                 ViewBag.patternJSON = PageStructure.getSection(db, pattern);
                 ViewBag.solidJSON = PageStructure.getSection(db, solid);
                 ViewBag.otherPatt = PageStructure.getSection(db, otherPatt);

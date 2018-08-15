@@ -19,10 +19,10 @@ namespace patternsLearning.Controllers
         }
 
         public ActionResult BriefDescription() {
-            siteDbEntities db;
+            siteDbEntities1 db;
             try
             {
-                db = new siteDbEntities();
+                db = new siteDbEntities1();
                 JObject description = JObject.FromObject(
                     new
                     {

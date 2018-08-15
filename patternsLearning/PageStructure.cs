@@ -10,8 +10,8 @@ namespace patternsLearning
 {
     public static class PageStructure
     {
-        public static JObject getSection(siteDbEntities db, string secName ) {
-            db = new siteDbEntities();
+        public static JObject getSection(siteDbEntities1 db, string secName ) {
+            db = new siteDbEntities1();
             var section = db.section.Where(s => s.sec_name == secName).Single();
             JObject sectionJSON = JObject.FromObject(new
             {

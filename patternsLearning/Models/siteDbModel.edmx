@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище siteDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="article">
+          <Key>
+            <PropertyRef Name="art_id" />
+          </Key>
+          <Property Name="art_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="art_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="art_description" Type="ntext" />
+          <Property Name="base_part_id" Type="int" />
+          <Property Name="art_motivation" Type="ntext" />
+          <Property Name="sample_part_id" Type="int" />
+          <Property Name="art_note" Type="ntext" />
+          <Property Name="cat_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="base_part">
+          <Key>
+            <PropertyRef Name="base_part_id" />
+          </Key>
+          <Property Name="base_part_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="base_part_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="base_part_description" Type="ntext" />
+          <Property Name="base_part_pic" Type="varchar(max)" />
+          <Property Name="base_part_info" Type="ntext" />
+          <Property Name="art_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cat_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cat_description" Type="ntext" />
+          <Property Name="sec_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sample_part">
+          <Key>
+            <PropertyRef Name="sample_part_id" />
+          </Key>
+          <Property Name="sample_part_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sample_part_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sample_part_description" Type="ntext" />
+          <Property Name="sample_part_pic" Type="varchar(max)" />
+          <Property Name="sample_part_info" Type="ntext" />
+          <Property Name="sample_part_code" Type="ntext" />
+          <Property Name="sample_part_gitref" Type="varchar(max)" />
+          <Property Name="art_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="section">
+          <Key>
+            <PropertyRef Name="sec_id" />
+          </Key>
+          <Property Name="sec_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sec_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sec_description" Type="ntext" />
+          <Property Name="sec_front_pic" Type="varchar(max)" />
+          <Property Name="sec_back_pic" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_Article_ToCategory">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="article" Type="Self.article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="article">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasePart_ToArticle">
+          <End Role="article" Type="Self.article" Multiplicity="1" />
+          <End Role="base_part" Type="Self.base_part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="article">
+              <PropertyRef Name="art_id" />
+            </Principal>
+            <Dependent Role="base_part">
+              <PropertyRef Name="art_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_category_ToSection">
+          <End Role="section" Type="Self.section" Multiplicity="1" />
+          <End Role="category" Type="Self.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="section">
+              <PropertyRef Name="sec_id" />
+            </Principal>
+            <Dependent Role="category">
+              <PropertyRef Name="sec_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePart_ToArticle">
+          <End Role="article" Type="Self.article" Multiplicity="1" />
+          <End Role="sample_part" Type="Self.sample_part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="article">
+              <PropertyRef Name="art_id" />
+            </Principal>
+            <Dependent Role="sample_part">
+              <PropertyRef Name="art_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище siteDbModelContainer">
+          <EntitySet Name="article" EntityType="Self.article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="base_part" EntityType="Self.base_part" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sample_part" EntityType="Self.sample_part" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="section" EntityType="Self.section" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Article_ToCategory" Association="Self.FK_Article_ToCategory">
+            <End Role="category" EntitySet="category" />
+            <End Role="article" EntitySet="article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasePart_ToArticle" Association="Self.FK_BasePart_ToArticle">
+            <End Role="article" EntitySet="article" />
+            <End Role="base_part" EntitySet="base_part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_category_ToSection" Association="Self.FK_category_ToSection">
+            <End Role="section" EntitySet="section" />
+            <End Role="category" EntitySet="category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePart_ToArticle" Association="Self.FK_SamplePart_ToArticle">
+            <End Role="article" EntitySet="article" />
+            <End Role="sample_part" EntitySet="sample_part" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="siteDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="article">
+          <Key>
+            <PropertyRef Name="art_id" />
+          </Key>
+          <Property Name="art_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="art_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="art_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="base_part_id" Type="Int32" />
+          <Property Name="art_motivation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_id" Type="Int32" />
+          <Property Name="art_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="cat_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="category" Relationship="Self.FK_Article_ToCategory" FromRole="article" ToRole="category" />
+          <NavigationProperty Name="base_part" Relationship="Self.FK_BasePart_ToArticle" FromRole="article" ToRole="base_part" />
+          <NavigationProperty Name="sample_part" Relationship="Self.FK_SamplePart_ToArticle" FromRole="article" ToRole="sample_part" />
+        </EntityType>
+        <EntityType Name="base_part">
+          <Key>
+            <PropertyRef Name="base_part_id" />
+          </Key>
+          <Property Name="base_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="base_part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="base_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="base_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="base_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="article" Relationship="Self.FK_BasePart_ToArticle" FromRole="base_part" ToRole="article" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="cat_id" />
+          </Key>
+          <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cat_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sec_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="article" Relationship="Self.FK_Article_ToCategory" FromRole="category" ToRole="article" />
+          <NavigationProperty Name="section" Relationship="Self.FK_category_ToSection" FromRole="category" ToRole="section" />
+        </EntityType>
+        <EntityType Name="sample_part">
+          <Key>
+            <PropertyRef Name="sample_part_id" />
+          </Key>
+          <Property Name="sample_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sample_part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sample_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sample_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_gitref" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="article" Relationship="Self.FK_SamplePart_ToArticle" FromRole="sample_part" ToRole="article" />
+        </EntityType>
+        <EntityType Name="section">
+          <Key>
+            <PropertyRef Name="sec_id" />
+          </Key>
+          <Property Name="sec_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sec_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sec_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sec_front_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sec_back_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="category" Relationship="Self.FK_category_ToSection" FromRole="section" ToRole="category" />
+        </EntityType>
+        <Association Name="FK_Article_ToCategory">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="article" Type="Self.article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="cat_id" />
+            </Principal>
+            <Dependent Role="article">
+              <PropertyRef Name="cat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasePart_ToArticle">
+          <End Role="article" Type="Self.article" Multiplicity="1" />
+          <End Role="base_part" Type="Self.base_part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="article">
+              <PropertyRef Name="art_id" />
+            </Principal>
+            <Dependent Role="base_part">
+              <PropertyRef Name="art_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SamplePart_ToArticle">
+          <End Role="article" Type="Self.article" Multiplicity="1" />
+          <End Role="sample_part" Type="Self.sample_part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="article">
+              <PropertyRef Name="art_id" />
+            </Principal>
+            <Dependent Role="sample_part">
+              <PropertyRef Name="art_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_category_ToSection">
+          <End Role="section" Type="Self.section" Multiplicity="1" />
+          <End Role="category" Type="Self.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="section">
+              <PropertyRef Name="sec_id" />
+            </Principal>
+            <Dependent Role="category">
+              <PropertyRef Name="sec_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="siteDbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="article" EntityType="Self.article" />
+          <EntitySet Name="base_part" EntityType="Self.base_part" />
+          <EntitySet Name="category" EntityType="Self.category" />
+          <EntitySet Name="sample_part" EntityType="Self.sample_part" />
+          <EntitySet Name="section" EntityType="Self.section" />
+          <AssociationSet Name="FK_Article_ToCategory" Association="Self.FK_Article_ToCategory">
+            <End Role="category" EntitySet="category" />
+            <End Role="article" EntitySet="article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasePart_ToArticle" Association="Self.FK_BasePart_ToArticle">
+            <End Role="article" EntitySet="article" />
+            <End Role="base_part" EntitySet="base_part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SamplePart_ToArticle" Association="Self.FK_SamplePart_ToArticle">
+            <End Role="article" EntitySet="article" />
+            <End Role="sample_part" EntitySet="sample_part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_category_ToSection" Association="Self.FK_category_ToSection">
+            <End Role="section" EntitySet="section" />
+            <End Role="category" EntitySet="category" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище siteDbModelContainer" CdmEntityContainer="siteDbEntities1">
+          <EntitySetMapping Name="article">
+            <EntityTypeMapping TypeName="siteDbModel.article">
+              <MappingFragment StoreEntitySet="article">
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+                <ScalarProperty Name="art_name" ColumnName="art_name" />
+                <ScalarProperty Name="art_description" ColumnName="art_description" />
+                <ScalarProperty Name="base_part_id" ColumnName="base_part_id" />
+                <ScalarProperty Name="art_motivation" ColumnName="art_motivation" />
+                <ScalarProperty Name="sample_part_id" ColumnName="sample_part_id" />
+                <ScalarProperty Name="art_note" ColumnName="art_note" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="base_part">
+            <EntityTypeMapping TypeName="siteDbModel.base_part">
+              <MappingFragment StoreEntitySet="base_part">
+                <ScalarProperty Name="base_part_id" ColumnName="base_part_id" />
+                <ScalarProperty Name="base_part_name" ColumnName="base_part_name" />
+                <ScalarProperty Name="base_part_description" ColumnName="base_part_description" />
+                <ScalarProperty Name="base_part_pic" ColumnName="base_part_pic" />
+                <ScalarProperty Name="base_part_info" ColumnName="base_part_info" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="category">
+            <EntityTypeMapping TypeName="siteDbModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+                <ScalarProperty Name="cat_description" ColumnName="cat_description" />
+                <ScalarProperty Name="sec_id" ColumnName="sec_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sample_part">
+            <EntityTypeMapping TypeName="siteDbModel.sample_part">
+              <MappingFragment StoreEntitySet="sample_part">
+                <ScalarProperty Name="sample_part_id" ColumnName="sample_part_id" />
+                <ScalarProperty Name="sample_part_name" ColumnName="sample_part_name" />
+                <ScalarProperty Name="sample_part_description" ColumnName="sample_part_description" />
+                <ScalarProperty Name="sample_part_pic" ColumnName="sample_part_pic" />
+                <ScalarProperty Name="sample_part_info" ColumnName="sample_part_info" />
+                <ScalarProperty Name="sample_part_code" ColumnName="sample_part_code" />
+                <ScalarProperty Name="sample_part_gitref" ColumnName="sample_part_gitref" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="section">
+            <EntityTypeMapping TypeName="siteDbModel.section">
+              <MappingFragment StoreEntitySet="section">
+                <ScalarProperty Name="sec_id" ColumnName="sec_id" />
+                <ScalarProperty Name="sec_name" ColumnName="sec_name" />
+                <ScalarProperty Name="sec_description" ColumnName="sec_description" />
+                <ScalarProperty Name="sec_front_pic" ColumnName="sec_front_pic" />
+                <ScalarProperty Name="sec_back_pic" ColumnName="sec_back_pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
