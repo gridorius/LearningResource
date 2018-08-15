@@ -154,11 +154,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\home.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\patterns.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\home.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\patterns.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -173,14 +180,19 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="fonts\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Views\Patterns\Article.cshtml" />
+    <Content Include="Views\Patterns\Categories.cshtml" />
+    <Content Include="Views\Patterns\Index.cshtml" />
+    <Content Include="Views\Home\BriefDescription.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Algorithms\Article.cshtml" />
+    <Content Include="Views\Algorithms\Categories.cshtml" />
+    <Content Include="Views\Algorithms\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

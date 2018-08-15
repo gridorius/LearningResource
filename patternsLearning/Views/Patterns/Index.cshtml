@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Паттерны";
+}
+
+    <h1>Паттерны</h1>
+    <div class="pattern-categories">
+        <category v-bind="category" v-for="category in categories"></category>
+    </div>
+
+@section styles{
+    @Styles.Render("~/Content/patterns")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/patterns")
+}
