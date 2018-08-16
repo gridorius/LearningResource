@@ -33,7 +33,7 @@ namespace patternsLearning.Controllers
                         sec_name = s.sec_name,
                         sec_description = s.sec_description,
                         sec_front_pic = s.sec_front_pic,
-                        sec_back_pick = s.sec_back_pic
+                        sec_back_pic = s.sec_back_pic
                     }
                     }
                         );
