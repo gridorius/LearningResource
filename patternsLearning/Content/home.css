@@ -1,9 +1,10 @@
 ﻿section {
     position: relative;
     width: 100%;
-    height: 100vh;
-    padding: 30px;
+    min-height: 100vh;
+    padding: 50px 8vw;
     box-sizing: border-box;
+    background: #f0f8ff;
 }
 
 h1 {
@@ -21,37 +22,34 @@ a {
     color: inherit;
 }
 
-div.button {
+.parallax {
+    height: 60vh;
+    overflow: hidden;
+}
+
+.p-active {
+    position: relative;
+}
+
+.p-active > img {
     position: absolute;
-    left: 20px;
-    bottom: 20px;
-    font-size: 40px;
-    padding: 10px;
-    background: rgb(76, 182, 169);
-    cursor: pointer;
-    text-decoration: none;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1
 }
 
-.pattern-categories {
-    padding-top: 50px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    text-align: center;
-    font-size: 30px;
+.p-active > img:first-child {
+    filter: blur(2px);
 }
 
-.pattern-categories p {
-    font-size: 20px;
-    padding: 0 50px;
+.p-active > img:last-child{
+ 
 }
 
-.parallax{
-    position:relative;
+.p-passive {
+    line-height: 60vh;
+    background: rgba(0, 14, 59, 0.35);
+    color: #e8f4ff;
+    text-align:center;
+    font-size:100px;
 }
-
-    .parallax > img {
-        position: absolute;
-        background-size: cover;
-        width: 100vw;
-        height: 100vh;
-    }

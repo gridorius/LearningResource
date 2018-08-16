@@ -1,11 +1,11 @@
 ﻿Vue.component('double-parallax', {
     template: `
-        <div>
-            <div class='parallax' ref='img' style="height:60vh;overflow:hidden">
-                <img v-if='src2' :src='src2' :style="{transform:'translateY('+(y/2-100)+'px)'}"></img>
-                <img  :src='src1' :style="{transform:'translateY('+(y/3)+'px)'}"></img>
+        <div class='parallax'>
+            <div class='p-active' ref='img'>
+                <img :src='src2' :style="{transform:'translateY('+(y/2-100)+'px)'}"></img>
+                <img v-if='src1' :src='src1' :style="{transform:'translateY('+(y/3)+'px)'}"></img>
             </div>
-            <slot></slot>
+            <div class='p-passive'><slot></slot></div>
         </div>
     `,
     props: ['src1', 'src2'],
@@ -25,14 +25,14 @@
 Vue.component('v-sec', {
     template: `
         <div>
-            <double-parallax :src1='src1' :src2='src2'></double-parallax>
+            <double-parallax v-if='src1 || src2' :src1='src1' :src2='src2'><slot></slot></double-parallax>
             <section>
-                <h1>{{name}}</h1>
+                <h1><slot v-if='!src1 && !src2'></slot></h1>
                 <h2>{{description}}</h2>
             </section>
         </div>
     `,
-    props: ['src1', 'src2', 'name','description'],
+    props: ['src1', 'src2', 'description'],
 
 });
 
