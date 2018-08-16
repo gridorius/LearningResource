@@ -2,6 +2,8 @@
     <h1>Описание сайта</h1>
     <h2></h2>
 </section>
+<v-sec v-for="bd in briefDescriptions" :name="bd.sec_name" :description="bd.sec_description" :src1="bd.sec_front_pic" :src2="bd.sec_back_pick"></v-sec>
+<double-parallax></double-parallax>
 <section>
     <h1>Футер</h1>
 </section>
