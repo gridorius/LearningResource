@@ -12,9 +12,7 @@
           <Property Name="art_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="art_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="art_description" Type="ntext" />
-          <Property Name="base_part_id" Type="int" />
           <Property Name="art_motivation" Type="ntext" />
-          <Property Name="sample_part_id" Type="int" />
           <Property Name="art_note" Type="ntext" />
           <Property Name="cat_id" Type="int" Nullable="false" />
           <Property Name="art_pic" Type="varchar(max)" />
@@ -74,7 +72,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BasePart_ToArticle">
+        <Association Name="FK_base_part_ToArticle">
           <End Role="article" Type="Self.article" Multiplicity="1" />
           <End Role="base_part" Type="Self.base_part" Multiplicity="*" />
           <ReferentialConstraint>
@@ -98,7 +96,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SamplePart_ToArticle">
+        <Association Name="FK_sample_part_ToArticle">
           <End Role="article" Type="Self.article" Multiplicity="1" />
           <End Role="sample_part" Type="Self.sample_part" Multiplicity="*" />
           <ReferentialConstraint>
@@ -120,7 +118,7 @@
             <End Role="category" EntitySet="category" />
             <End Role="article" EntitySet="article" />
           </AssociationSet>
-          <AssociationSet Name="FK_BasePart_ToArticle" Association="Self.FK_BasePart_ToArticle">
+          <AssociationSet Name="FK_base_part_ToArticle" Association="Self.FK_base_part_ToArticle">
             <End Role="article" EntitySet="article" />
             <End Role="base_part" EntitySet="base_part" />
           </AssociationSet>
@@ -128,7 +126,7 @@
             <End Role="section" EntitySet="section" />
             <End Role="category" EntitySet="category" />
           </AssociationSet>
-          <AssociationSet Name="FK_SamplePart_ToArticle" Association="Self.FK_SamplePart_ToArticle">
+          <AssociationSet Name="FK_sample_part_ToArticle" Association="Self.FK_sample_part_ToArticle">
             <End Role="article" EntitySet="article" />
             <End Role="sample_part" EntitySet="sample_part" />
           </AssociationSet>
@@ -137,74 +135,81 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="siteDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="siteDbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="article" EntityType="siteDbModel.article" />
+          <EntitySet Name="base_part" EntityType="siteDbModel.base_part" />
+          <EntitySet Name="category" EntityType="siteDbModel.category" />
+          <EntitySet Name="section" EntityType="siteDbModel.section" />
+          <AssociationSet Name="FK_Article_ToCategory" Association="siteDbModel.FK_Article_ToCategory">
+            <End Role="category" EntitySet="category" />
+            <End Role="article" EntitySet="article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_base_part_ToArticle" Association="siteDbModel.FK_base_part_ToArticle">
+            <End Role="article" EntitySet="article" />
+            <End Role="base_part" EntitySet="base_part" />
+          </AssociationSet>
+          <AssociationSet Name="FK_category_ToSection" Association="siteDbModel.FK_category_ToSection">
+            <End Role="section" EntitySet="section" />
+            <End Role="category" EntitySet="category" />
+          </AssociationSet>
+          <EntitySet Name="sample_part" EntityType="siteDbModel.sample_part" />
+          <AssociationSet Name="FK_sample_part_ToArticle" Association="siteDbModel.FK_sample_part_ToArticle">
+            <End Role="article" EntitySet="article" />
+            <End Role="sample_part" EntitySet="sample_part" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="article">
           <Key>
             <PropertyRef Name="art_id" />
           </Key>
           <Property Name="art_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="art_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="art_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="art_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="base_part_id" Type="Int32" />
           <Property Name="art_motivation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_id" Type="Int32" />
           <Property Name="art_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="cat_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="category" Relationship="Self.FK_Article_ToCategory" FromRole="article" ToRole="category" />
-          <NavigationProperty Name="base_part" Relationship="Self.FK_BasePart_ToArticle" FromRole="article" ToRole="base_part" />
-          <NavigationProperty Name="sample_part" Relationship="Self.FK_SamplePart_ToArticle" FromRole="article" ToRole="sample_part" />
           <Property Name="art_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="category" Relationship="siteDbModel.FK_Article_ToCategory" FromRole="article" ToRole="category" />
+          <NavigationProperty Name="base_part" Relationship="siteDbModel.FK_base_part_ToArticle" FromRole="article" ToRole="base_part" />
+          <NavigationProperty Name="sample_part" Relationship="siteDbModel.FK_sample_part_ToArticle" FromRole="article" ToRole="sample_part" />
         </EntityType>
         <EntityType Name="base_part">
           <Key>
             <PropertyRef Name="base_part_id" />
           </Key>
           <Property Name="base_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="base_part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="base_part_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="base_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="base_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="base_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="art_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="article" Relationship="Self.FK_BasePart_ToArticle" FromRole="base_part" ToRole="article" />
+          <NavigationProperty Name="article" Relationship="siteDbModel.FK_base_part_ToArticle" FromRole="base_part" ToRole="article" />
         </EntityType>
         <EntityType Name="category">
           <Key>
             <PropertyRef Name="cat_id" />
           </Key>
           <Property Name="cat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cat_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cat_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="cat_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sec_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="article" Relationship="Self.FK_Article_ToCategory" FromRole="category" ToRole="article" />
-          <NavigationProperty Name="section" Relationship="Self.FK_category_ToSection" FromRole="category" ToRole="section" />
-        </EntityType>
-        <EntityType Name="sample_part">
-          <Key>
-            <PropertyRef Name="sample_part_id" />
-          </Key>
-          <Property Name="sample_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sample_part_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="sample_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="sample_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_gitref" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="art_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="article" Relationship="Self.FK_SamplePart_ToArticle" FromRole="sample_part" ToRole="article" />
+          <NavigationProperty Name="article" Relationship="siteDbModel.FK_Article_ToCategory" FromRole="category" ToRole="article" />
+          <NavigationProperty Name="section" Relationship="siteDbModel.FK_category_ToSection" FromRole="category" ToRole="section" />
         </EntityType>
         <EntityType Name="section">
           <Key>
             <PropertyRef Name="sec_id" />
           </Key>
           <Property Name="sec_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sec_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sec_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sec_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sec_front_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sec_back_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="category" Relationship="Self.FK_category_ToSection" FromRole="section" ToRole="category" />
+          <NavigationProperty Name="category" Relationship="siteDbModel.FK_category_ToSection" FromRole="section" ToRole="category" />
         </EntityType>
         <Association Name="FK_Article_ToCategory">
-          <End Role="category" Type="Self.category" Multiplicity="1" />
-          <End Role="article" Type="Self.article" Multiplicity="*" />
+          <End Type="siteDbModel.category" Role="category" Multiplicity="1" />
+          <End Type="siteDbModel.article" Role="article" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="category">
               <PropertyRef Name="cat_id" />
@@ -214,9 +219,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BasePart_ToArticle">
-          <End Role="article" Type="Self.article" Multiplicity="1" />
-          <End Role="base_part" Type="Self.base_part" Multiplicity="*" />
+        <Association Name="FK_base_part_ToArticle">
+          <End Type="siteDbModel.article" Role="article" Multiplicity="1" />
+          <End Type="siteDbModel.base_part" Role="base_part" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="article">
               <PropertyRef Name="art_id" />
@@ -226,21 +231,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SamplePart_ToArticle">
-          <End Role="article" Type="Self.article" Multiplicity="1" />
-          <End Role="sample_part" Type="Self.sample_part" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="article">
-              <PropertyRef Name="art_id" />
-            </Principal>
-            <Dependent Role="sample_part">
-              <PropertyRef Name="art_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_category_ToSection">
-          <End Role="section" Type="Self.section" Multiplicity="1" />
-          <End Role="category" Type="Self.category" Multiplicity="*" />
+          <End Type="siteDbModel.section" Role="section" Multiplicity="1" />
+          <End Type="siteDbModel.category" Role="category" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="section">
               <PropertyRef Name="sec_id" />
@@ -250,29 +243,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="siteDbEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="article" EntityType="Self.article" />
-          <EntitySet Name="base_part" EntityType="Self.base_part" />
-          <EntitySet Name="category" EntityType="Self.category" />
-          <EntitySet Name="sample_part" EntityType="Self.sample_part" />
-          <EntitySet Name="section" EntityType="Self.section" />
-          <AssociationSet Name="FK_Article_ToCategory" Association="Self.FK_Article_ToCategory">
-            <End Role="category" EntitySet="category" />
-            <End Role="article" EntitySet="article" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BasePart_ToArticle" Association="Self.FK_BasePart_ToArticle">
-            <End Role="article" EntitySet="article" />
-            <End Role="base_part" EntitySet="base_part" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SamplePart_ToArticle" Association="Self.FK_SamplePart_ToArticle">
-            <End Role="article" EntitySet="article" />
-            <End Role="sample_part" EntitySet="sample_part" />
-          </AssociationSet>
-          <AssociationSet Name="FK_category_ToSection" Association="Self.FK_category_ToSection">
-            <End Role="section" EntitySet="section" />
-            <End Role="category" EntitySet="category" />
-          </AssociationSet>
-        </EntityContainer>
+        <EntityType Name="sample_part">
+          <Key>
+            <PropertyRef Name="sample_part_id" />
+          </Key>
+          <Property Name="sample_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sample_part_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sample_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_gitref" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="article" Relationship="siteDbModel.FK_sample_part_ToArticle" FromRole="sample_part" ToRole="article" />
+        </EntityType>
+        <Association Name="FK_sample_part_ToArticle">
+          <End Type="siteDbModel.article" Role="article" Multiplicity="1" />
+          <End Type="siteDbModel.sample_part" Role="sample_part" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="article">
+              <PropertyRef Name="art_id" />
+            </Principal>
+            <Dependent Role="sample_part">
+              <PropertyRef Name="art_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -283,35 +279,44 @@
             <EntityTypeMapping TypeName="siteDbModel.article">
               <MappingFragment StoreEntitySet="article">
                 <ScalarProperty Name="art_pic" ColumnName="art_pic" />
-                <ScalarProperty Name="art_id" ColumnName="art_id" />
-                <ScalarProperty Name="art_name" ColumnName="art_name" />
-                <ScalarProperty Name="art_description" ColumnName="art_description" />
-                <ScalarProperty Name="base_part_id" ColumnName="base_part_id" />
-                <ScalarProperty Name="art_motivation" ColumnName="art_motivation" />
-                <ScalarProperty Name="sample_part_id" ColumnName="sample_part_id" />
-                <ScalarProperty Name="art_note" ColumnName="art_note" />
                 <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+                <ScalarProperty Name="art_note" ColumnName="art_note" />
+                <ScalarProperty Name="art_motivation" ColumnName="art_motivation" />
+                <ScalarProperty Name="art_description" ColumnName="art_description" />
+                <ScalarProperty Name="art_name" ColumnName="art_name" />
+                <ScalarProperty Name="art_id" ColumnName="art_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="base_part">
             <EntityTypeMapping TypeName="siteDbModel.base_part">
               <MappingFragment StoreEntitySet="base_part">
-                <ScalarProperty Name="base_part_id" ColumnName="base_part_id" />
-                <ScalarProperty Name="base_part_name" ColumnName="base_part_name" />
-                <ScalarProperty Name="base_part_description" ColumnName="base_part_description" />
-                <ScalarProperty Name="base_part_pic" ColumnName="base_part_pic" />
-                <ScalarProperty Name="base_part_info" ColumnName="base_part_info" />
                 <ScalarProperty Name="art_id" ColumnName="art_id" />
+                <ScalarProperty Name="base_part_info" ColumnName="base_part_info" />
+                <ScalarProperty Name="base_part_pic" ColumnName="base_part_pic" />
+                <ScalarProperty Name="base_part_description" ColumnName="base_part_description" />
+                <ScalarProperty Name="base_part_name" ColumnName="base_part_name" />
+                <ScalarProperty Name="base_part_id" ColumnName="base_part_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="category">
             <EntityTypeMapping TypeName="siteDbModel.category">
               <MappingFragment StoreEntitySet="category">
-                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
-                <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+                <ScalarProperty Name="sec_id" ColumnName="sec_id" />
                 <ScalarProperty Name="cat_description" ColumnName="cat_description" />
+                <ScalarProperty Name="cat_name" ColumnName="cat_name" />
+                <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="section">
+            <EntityTypeMapping TypeName="siteDbModel.section">
+              <MappingFragment StoreEntitySet="section">
+                <ScalarProperty Name="sec_back_pic" ColumnName="sec_back_pic" />
+                <ScalarProperty Name="sec_front_pic" ColumnName="sec_front_pic" />
+                <ScalarProperty Name="sec_description" ColumnName="sec_description" />
+                <ScalarProperty Name="sec_name" ColumnName="sec_name" />
                 <ScalarProperty Name="sec_id" ColumnName="sec_id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -319,25 +324,14 @@
           <EntitySetMapping Name="sample_part">
             <EntityTypeMapping TypeName="siteDbModel.sample_part">
               <MappingFragment StoreEntitySet="sample_part">
-                <ScalarProperty Name="sample_part_id" ColumnName="sample_part_id" />
-                <ScalarProperty Name="sample_part_name" ColumnName="sample_part_name" />
-                <ScalarProperty Name="sample_part_description" ColumnName="sample_part_description" />
-                <ScalarProperty Name="sample_part_pic" ColumnName="sample_part_pic" />
-                <ScalarProperty Name="sample_part_info" ColumnName="sample_part_info" />
-                <ScalarProperty Name="sample_part_code" ColumnName="sample_part_code" />
-                <ScalarProperty Name="sample_part_gitref" ColumnName="sample_part_gitref" />
                 <ScalarProperty Name="art_id" ColumnName="art_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="section">
-            <EntityTypeMapping TypeName="siteDbModel.section">
-              <MappingFragment StoreEntitySet="section">
-                <ScalarProperty Name="sec_id" ColumnName="sec_id" />
-                <ScalarProperty Name="sec_name" ColumnName="sec_name" />
-                <ScalarProperty Name="sec_description" ColumnName="sec_description" />
-                <ScalarProperty Name="sec_front_pic" ColumnName="sec_front_pic" />
-                <ScalarProperty Name="sec_back_pic" ColumnName="sec_back_pic" />
+                <ScalarProperty Name="sample_part_gitref" ColumnName="sample_part_gitref" />
+                <ScalarProperty Name="sample_part_code" ColumnName="sample_part_code" />
+                <ScalarProperty Name="sample_part_info" ColumnName="sample_part_info" />
+                <ScalarProperty Name="sample_part_pic" ColumnName="sample_part_pic" />
+                <ScalarProperty Name="sample_part_description" ColumnName="sample_part_description" />
+                <ScalarProperty Name="sample_part_name" ColumnName="sample_part_name" />
+                <ScalarProperty Name="sample_part_id" ColumnName="sample_part_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
