@@ -24,9 +24,7 @@ namespace patternsLearning.Models
         public int art_id { get; set; }
         public string art_name { get; set; }
         public string art_description { get; set; }
-        public Nullable<int> base_part_id { get; set; }
         public string art_motivation { get; set; }
-        public Nullable<int> sample_part_id { get; set; }
         public string art_note { get; set; }
         public int cat_id { get; set; }
         public string art_pic { get; set; }

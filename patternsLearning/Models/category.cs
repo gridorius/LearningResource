@@ -25,8 +25,8 @@ namespace patternsLearning.Models
         public string cat_description { get; set; }
         public int sec_id { get; set; }
     
+        public virtual section section { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<article> article { get; set; }
-        public virtual section section { get; set; }
     }
 }

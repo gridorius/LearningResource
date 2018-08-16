@@ -21,7 +21,7 @@ namespace patternsLearning.Models
         public string sample_part_info { get; set; }
         public string sample_part_code { get; set; }
         public string sample_part_gitref { get; set; }
-        public int art_id { get; set; }
+        public Nullable<int> art_id { get; set; }
     
         public virtual article article { get; set; }
     }

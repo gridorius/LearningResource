@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="91e32312e35d4e58b7f906154a99c066" Name="Diagram1">
-        <EntityTypeShape EntityType="siteDbModel.article" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="siteDbModel.base_part" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="siteDbModel.category" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="siteDbModel.sample_part" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="siteDbModel.section" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
-        <AssociationConnector Association="siteDbModel.FK_Article_ToCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="siteDbModel.FK_BasePart_ToArticle" ManuallyRouted="false" />
-        <AssociationConnector Association="siteDbModel.FK_SamplePart_ToArticle" ManuallyRouted="false" />
-        <AssociationConnector Association="siteDbModel.FK_category_ToSection" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="siteDbModel.category" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="siteDbModel.section" Width="1.5" PointX="0.75" PointY="1.25" />
+        <AssociationConnector Association="siteDbModel.FK_category_ToSection" />
+        <EntityTypeShape EntityType="siteDbModel.article" Width="1.5" PointX="5.5" PointY="1.125" />
+        <EntityTypeShape EntityType="siteDbModel.base_part" Width="1.5" PointX="7.75" PointY="0.5" />
+        <EntityTypeShape EntityType="siteDbModel.sample_part" Width="1.5" PointX="7.75" PointY="3.375" />
+        <AssociationConnector Association="siteDbModel.FK_Article_ToCategory" />
+        <AssociationConnector Association="siteDbModel.FK_base_part_ToArticle" />
+        <AssociationConnector Association="siteDbModel.FK_sample_part_ToArticle" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
