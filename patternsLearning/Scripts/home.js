@@ -2,8 +2,8 @@
     template: `
         <div class='parallax'>
             <div class='p-active' ref='img'>
-                <img :src='src2' :style="{transform:'translateY('+(y/2-100)+'px)'}"></img>
-                <img v-if='src1' :src='src1' :style="{transform:'translateY('+(y/3)+'px)'}"></img>
+                <div :style="{backgroundImage:'url('+src2+')',transform:'translateY('+(y/2-100)+'px)'}"></div>
+                <div :style="{backgroundImage:'url('+src1+')',transform:'translateY('+(y/3)+'px)'}"></div>
             </div>
             <div class='p-passive'><slot></slot></div>
         </div>
