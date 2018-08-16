@@ -23,6 +23,7 @@ namespace patternsLearning
                 {
                     art_name = a.art_name,
                     art_description = a.art_description,
+                    art_pic = a.art_pic,
                     base_part = from bp in db.base_part
                                 where bp.art_id == a.art_id
                                 select new
