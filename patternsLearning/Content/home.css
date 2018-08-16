@@ -1,0 +1,57 @@
+﻿section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 60px;
+    margin: 0;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+div.button {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    font-size: 40px;
+    padding: 10px;
+    background: rgb(76, 182, 169);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.pattern-categories {
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    text-align: center;
+    font-size: 30px;
+}
+
+.pattern-categories p {
+    font-size: 20px;
+    padding: 0 50px;
+}
+
+.parallax{
+    position:relative;
+}
+
+    .parallax > img {
+        position: absolute;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+    }
