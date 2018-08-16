@@ -1,7 +1,36 @@
-﻿body {
+﻿@font-face {
+    font-family: 'As-Nova Regular';
+    src: url(../fonts/12136.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Sirona';
+    src: url(../fonts/10755.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Marta';
+    src: url(../fonts/Marta.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'PF Centro Slab Pro Regular';
+    src: url('../fonts/PF Centro Slab Pro.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Courier10 Cyr BT Bold Italic';
+    src: url('../fonts/Courier10 Cyr BT.ttf') format('truetype');
+}
+
+body {
     padding: 0;
     margin: 0;
+    color: darkslategray;
+    background: rgb(158, 245, 240);
+    font-family: PF Centro Slab Pro Regular;
+}
+
+h1,h2,h3,h4,h5{
     font-family: As-Nova Regular;
-    color:darkslategray;
-    background:rgb(158, 245, 240);
 }

@@ -244,6 +244,11 @@
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\10755.otf" />
+    <Content Include="fonts\12136.ttf" />
+    <Content Include="fonts\Courier10 Cyr BT.ttf" />
+    <Content Include="fonts\Marta.otf" />
+    <Content Include="fonts\PF Centro Slab Pro.ttf" />
     <EntityDeploy Include="Models\siteDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>siteDbModel.Designer.cs</LastGenOutput>

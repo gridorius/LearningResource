@@ -28,7 +28,7 @@ Vue.component('v-sec', {
             <double-parallax v-if='src1 || src2' :src1='src1' :src2='src2'><slot></slot></double-parallax>
             <section>
                 <h1><slot v-if='!src1 && !src2'></slot></h1>
-                <h2>{{description}}</h2>
+                <div class='content'>{{description}}</div>
             </section>
         </div>
     `,
