@@ -48,4 +48,4 @@ let app = new Vue({
     }
 });
 
-fetch('Home/BriefDescription').then(r => r.text()).then(t => JSON.parse(t.replace(/&quot;/g, '\"')).art).then(app.setBriefDescription);
+fetch('/Home/BriefDescription').then(r => r.text()).then(t => JSON.parse(t.replace(/&quot;/g, '\"')).art).then(app.setBriefDescription);
