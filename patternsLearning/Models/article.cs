@@ -29,6 +29,7 @@ namespace patternsLearning.Models
         public Nullable<int> sample_part_id { get; set; }
         public string art_note { get; set; }
         public int cat_id { get; set; }
+        public string art_pic { get; set; }
     
         public virtual category category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

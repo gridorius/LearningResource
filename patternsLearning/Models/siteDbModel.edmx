@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище siteDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище siteDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="article">
           <Key>
             <PropertyRef Name="art_id" />
@@ -17,6 +17,7 @@
           <Property Name="sample_part_id" Type="int" />
           <Property Name="art_note" Type="ntext" />
           <Property Name="cat_id" Type="int" Nullable="false" />
+          <Property Name="art_pic" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="base_part">
           <Key>
@@ -132,8 +133,7 @@
             <End Role="sample_part" EntitySet="sample_part" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="siteDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -152,6 +152,7 @@
           <NavigationProperty Name="category" Relationship="Self.FK_Article_ToCategory" FromRole="article" ToRole="category" />
           <NavigationProperty Name="base_part" Relationship="Self.FK_BasePart_ToArticle" FromRole="article" ToRole="base_part" />
           <NavigationProperty Name="sample_part" Relationship="Self.FK_SamplePart_ToArticle" FromRole="article" ToRole="sample_part" />
+          <Property Name="art_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="base_part">
           <Key>
@@ -281,6 +282,7 @@
           <EntitySetMapping Name="article">
             <EntityTypeMapping TypeName="siteDbModel.article">
               <MappingFragment StoreEntitySet="article">
+                <ScalarProperty Name="art_pic" ColumnName="art_pic" />
                 <ScalarProperty Name="art_id" ColumnName="art_id" />
                 <ScalarProperty Name="art_name" ColumnName="art_name" />
                 <ScalarProperty Name="art_description" ColumnName="art_description" />
