@@ -46,3 +46,5 @@ let app = new Vue({
         ],
     },
 });
+
+fetch('/Patterns/PatternPageStructure').then(r => r.json()).then();
