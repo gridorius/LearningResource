@@ -26,7 +26,7 @@ namespace patternsLearning
                                    cat_name = c.cat_name,
                                    cat_description = c.cat_description,
                                    article = from a in db.article
-                                             where a.art_id == c.sec_id
+                                             where a.cat_id == c.cat_id
                                              select new
                                              {
                                                  art_name = a.art_name,
