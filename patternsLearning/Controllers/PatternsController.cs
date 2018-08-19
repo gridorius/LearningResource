@@ -12,27 +12,30 @@ namespace patternsLearning.Controllers
         // GET: Patterns
         public ActionResult Index()
         {
+            return View();
+        }
+
+        //ya pidoras
+        public ActionResult PatternPageStructure()
+        {
             siteDbEntities1 db;
-            string pattern = "Паттерны проектирования";
-            string solid = "Принципы SOLID";
-            string otherPatt = "Другие паттерны проектирования";
+            string secName = "Паттерны проектирования";
             try
             {
                 db = new siteDbEntities1();
-                ViewBag.patternJSON = PageStructure.getSection(db, pattern);
-                ViewBag.solidJSON = PageStructure.getSection(db, solid);
-                ViewBag.otherPatt = PageStructure.getSection(db, otherPatt);
-                return View();
+                ViewBag.Json = PageStructure.getSection(db, secName);
+                return PartialView();
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View();
+                return PartialView();
             }
         }
 
-        public ActionResult Articles() {
-            return View();
+        public ActionResult Articles()
+        {
+            return PartialView();
         }
     }
 }
