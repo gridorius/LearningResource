@@ -144,7 +144,6 @@
           </AssociationSet>
           <EntitySet Name="article" EntityType="siteDbModel.article" />
           <EntitySet Name="base_part" EntityType="siteDbModel.base_part" />
-          <EntitySet Name="sample_part" EntityType="siteDbModel.sample_part" />
           <AssociationSet Name="FK_Article_ToCategory" Association="siteDbModel.FK_Article_ToCategory">
             <End Role="category" EntitySet="category" />
             <End Role="article" EntitySet="article" />
@@ -153,6 +152,7 @@
             <End Role="article" EntitySet="article" />
             <End Role="base_part" EntitySet="base_part" />
           </AssociationSet>
+          <EntitySet Name="sample_part" EntityType="siteDbModel.sample_part" />
           <AssociationSet Name="FK_sample_part_ToArticle" Association="siteDbModel.FK_sample_part_ToArticle">
             <End Role="article" EntitySet="article" />
             <End Role="sample_part" EntitySet="sample_part" />
@@ -219,20 +219,6 @@
           <Property Name="art_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="article" Relationship="siteDbModel.FK_base_part_ToArticle" FromRole="base_part" ToRole="article" />
         </EntityType>
-        <EntityType Name="sample_part">
-          <Key>
-            <PropertyRef Name="sample_part_id" />
-          </Key>
-          <Property Name="sample_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sample_part_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="sample_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="sample_part_gitref" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="art_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="article" Relationship="siteDbModel.FK_sample_part_ToArticle" FromRole="sample_part" ToRole="article" />
-        </EntityType>
         <Association Name="FK_Article_ToCategory">
           <End Type="siteDbModel.category" Role="category" Multiplicity="1" />
           <End Type="siteDbModel.article" Role="article" Multiplicity="*" />
@@ -257,8 +243,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sample_part">
+          <Key>
+            <PropertyRef Name="sample_part_id" />
+          </Key>
+          <Property Name="sample_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sample_part_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sample_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_gitref" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="article" Relationship="siteDbModel.FK_sample_part_ToArticle" FromRole="sample_part" ToRole="article" />
+        </EntityType>
         <Association Name="FK_sample_part_ToArticle">
-          <End Type="siteDbModel.article" Role="article" Multiplicity="0..1" />
+          <End Type="siteDbModel.article" Role="article" Multiplicity="1" />
           <End Type="siteDbModel.sample_part" Role="sample_part" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="article">

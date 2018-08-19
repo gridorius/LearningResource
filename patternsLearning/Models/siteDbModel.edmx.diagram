@@ -10,9 +10,9 @@
         <AssociationConnector Association="siteDbModel.FK_category_ToSection" />
         <EntityTypeShape EntityType="siteDbModel.article" Width="1.5" PointX="5.5" PointY="1.125" />
         <EntityTypeShape EntityType="siteDbModel.base_part" Width="1.5" PointX="7.75" PointY="0.5" />
-        <EntityTypeShape EntityType="siteDbModel.sample_part" Width="1.5" PointX="7.75" PointY="3.375" />
         <AssociationConnector Association="siteDbModel.FK_Article_ToCategory" />
         <AssociationConnector Association="siteDbModel.FK_base_part_ToArticle" />
+        <EntityTypeShape EntityType="siteDbModel.sample_part" Width="1.5" PointX="7.75" PointY="4.25" />
         <AssociationConnector Association="siteDbModel.FK_sample_part_ToArticle" />
       </Diagram>
     </edmx:Diagrams>
