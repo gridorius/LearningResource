@@ -41,6 +41,7 @@ h2 {
 ul.open {
     transform: translateY(0);
     opacity: 1;
+    z-index:auto;
 }
 
 .pattern-categories ul li {
