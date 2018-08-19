@@ -33,9 +33,23 @@ namespace patternsLearning.Controllers
             }
         }
 
-        public ActionResult Articles()
+        public ActionResult Articles(ArticleModel art)
         {
-            return PartialView();
+            siteDbEntities1 db;
+            string artName;
+            PattentFactory factory;
+            try
+            {
+                db = new siteDbEntities1();
+                artName = art.artName;
+                factory = new PattentFactory();
+                ViewBag.Json = factory.getJSON(db, artName);
+                return PartialView();
+            }
+            catch (Exception ex) {
+                ViewBag.Error = ex.Message;
+                return PartialView();
+            }
         }
     }
 }
