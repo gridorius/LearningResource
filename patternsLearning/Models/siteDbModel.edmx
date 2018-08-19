@@ -22,7 +22,7 @@
             <PropertyRef Name="base_part_id" />
           </Key>
           <Property Name="base_part_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="base_part_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="base_part_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="base_part_description" Type="ntext" />
           <Property Name="base_part_pic" Type="varchar(max)" />
           <Property Name="base_part_info" Type="ntext" />
@@ -42,13 +42,13 @@
             <PropertyRef Name="sample_part_id" />
           </Key>
           <Property Name="sample_part_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sample_part_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sample_part_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="sample_part_description" Type="ntext" />
           <Property Name="sample_part_pic" Type="varchar(max)" />
           <Property Name="sample_part_info" Type="ntext" />
           <Property Name="sample_part_code" Type="ntext" />
           <Property Name="sample_part_gitref" Type="varchar(max)" />
-          <Property Name="art_id" Type="int" />
+          <Property Name="art_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="section">
           <Key>
@@ -97,7 +97,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_sample_part_ToArticle">
-          <End Role="article" Type="Self.article" Multiplicity="0..1" />
+          <End Role="article" Type="Self.article" Multiplicity="1" />
           <End Role="sample_part" Type="Self.sample_part" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="article">
@@ -212,7 +212,7 @@
             <PropertyRef Name="base_part_id" />
           </Key>
           <Property Name="base_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="base_part_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="base_part_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="base_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="base_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="base_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -224,13 +224,13 @@
             <PropertyRef Name="sample_part_id" />
           </Key>
           <Property Name="sample_part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sample_part_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sample_part_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="sample_part_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sample_part_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sample_part_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sample_part_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sample_part_gitref" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="art_id" Type="Int32" />
+          <Property Name="art_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="article" Relationship="siteDbModel.FK_sample_part_ToArticle" FromRole="sample_part" ToRole="article" />
         </EntityType>
         <Association Name="FK_Article_ToCategory">
