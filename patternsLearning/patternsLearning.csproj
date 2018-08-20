@@ -258,7 +258,7 @@
       <DependentUpon>siteDbModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
-    <Content Include="Views\Patterns\Article.cshtml" />
+    <Content Include="Views\Patterns\Articles.cshtml" />
     <Content Include="Views\Patterns\Index.cshtml" />
     <Content Include="Views\Home\BriefDescription.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
