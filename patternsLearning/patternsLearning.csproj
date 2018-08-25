@@ -166,13 +166,16 @@
     <Compile Include="Models\article.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ArticleConstructModel.cs" />
     <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\BasePartConstructModel.cs" />
     <Compile Include="Models\base_part.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\category.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SamplePartConstruct.cs" />
     <Compile Include="Models\sample_part.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
     </Compile>

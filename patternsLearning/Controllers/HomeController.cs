@@ -11,8 +11,6 @@ namespace patternsLearning.Controllers
 {
     public class HomeController : Controller 
     {
-
-        //sec_description - эт и есть краткая информация, шоб тебя
         public ActionResult Index()
         {
             return View();
