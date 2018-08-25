@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "Паттерны";
 }
-<v-sec :name="'Паттерны'">
+<m-article v-if="article" :art="article"></m-article>
+<v-sec>
+    <h1 class="patterns-previev"></h1>
     <div class="pattern-categories">
         <category :name="category.cat_name" :description="category.cat_description" :article="category.article" v-for="category in categories"></category>
     </div>

@@ -189,14 +189,9 @@
     <Content Include="fonts\Marta.otf" />
     <Content Include="fonts\PF Centro Slab Pro.ttf" />
     <None Include="packages.config" />
-    <Content Include="Views\Patterns\Articles.cshtml" />
     <Content Include="Views\Patterns\Index.cshtml" />
-    <Content Include="Views\Home\BriefDescription.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Algorithms\Article.cshtml" />
-    <Content Include="Views\Algorithms\Categories.cshtml" />
     <Content Include="Views\Algorithms\Index.cshtml" />
-    <Content Include="Views\Patterns\PatternPageStructure.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
