@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using patternsLearning.Models;
+using Newtonsoft.Json.Linq;
 
 namespace patternsLearning.Controllers
 {
@@ -16,24 +17,23 @@ namespace patternsLearning.Controllers
         }
 
         //ya pidoras
-        public ActionResult PatternPageStructure()
+        public JObject PatternPageStructure()
         {
             siteDbEntities1 db;
             string secName = "Паттерны проектирования";
             try
             {
                 db = new siteDbEntities1();
-                ViewBag.Json = PageStructure.getSection(db, secName);
-                return PartialView();
+                return PageStructure.getSection(db, secName);
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return PartialView();
+                return new JObject (
+                    new JProperty("error",ex.Message));
             }
         }
 
-        public ActionResult Articles(ArticleModel art)
+        public JObject Articles(ArticleModel art)
         {
             siteDbEntities1 db;
             string artName;
@@ -43,12 +43,11 @@ namespace patternsLearning.Controllers
                 db = new siteDbEntities1();
                 artName = art.artName;
                 factory = new PattentFactory();
-                ViewBag.Json = factory.getJSON(db, artName);
-                return PartialView();
+                return factory.getJSON(db, artName);
             }
             catch (Exception ex) {
-                ViewBag.Error = ex.Message;
-                return PartialView();
+                return new JObject(
+                    new JProperty("error", ex.Message));
             }
         }
     }

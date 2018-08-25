@@ -45,8 +45,7 @@ namespace patternsLearning
                                       sample_part_gitref = sp.sample_part_gitref
                                   },
                     art_note = a.art_note,
-                    art_pic = a.art_pic
-                    
+                    art_pic=a.art_pic
                 } });
         }
     }
