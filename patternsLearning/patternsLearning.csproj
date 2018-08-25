@@ -198,6 +198,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\home.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\patterns.css" />
     <Content Include="App_Data\siteDb.mdf" />
     <Content Include="App_Data\siteDb_log.ldf">
       <DependentUpon>siteDb.mdf</DependentUpon>
@@ -207,6 +210,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\home.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\patterns.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Models\siteDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>siteDbModel.edmx</DependentUpon>
@@ -230,12 +237,19 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
+    <Folder Include="Models\" />
     <Folder Include="Scripts\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\10755.otf" />
+    <Content Include="fonts\12136.ttf" />
+    <Content Include="fonts\Courier10 Cyr BT.ttf" />
+    <Content Include="fonts\Marta.otf" />
+    <Content Include="fonts\PF Centro Slab Pro.ttf" />
     <EntityDeploy Include="Models\siteDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>siteDbModel.Designer.cs</LastGenOutput>
@@ -244,6 +258,14 @@
       <DependentUpon>siteDbModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
+    <Content Include="Views\Patterns\Articles.cshtml" />
+    <Content Include="Views\Patterns\Index.cshtml" />
+    <Content Include="Views\Home\BriefDescription.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Algorithms\Article.cshtml" />
+    <Content Include="Views\Algorithms\Categories.cshtml" />
+    <Content Include="Views\Algorithms\Index.cshtml" />
+    <Content Include="Views\Patterns\PatternPageStructure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
