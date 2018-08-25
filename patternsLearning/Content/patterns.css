@@ -4,7 +4,7 @@ h2 {
     cursor: pointer;
 }
 
-h1 {
+h1.patterns-previev {
     font-size: 60px;
     transform: scale(3) translateY(50px);
     animation: preview .3s linear 1s both;

@@ -261,14 +261,9 @@
       <DependentUpon>siteDbModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
-    <Content Include="Views\Patterns\Articles.cshtml" />
     <Content Include="Views\Patterns\Index.cshtml" />
-    <Content Include="Views\Home\BriefDescription.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Algorithms\Article.cshtml" />
-    <Content Include="Views\Algorithms\Categories.cshtml" />
     <Content Include="Views\Algorithms\Index.cshtml" />
-    <Content Include="Views\Patterns\PatternPageStructure.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
