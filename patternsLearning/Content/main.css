@@ -1,0 +1,102 @@
+﻿@font-face {
+    font-family: 'As-Nova Regular';
+    src: url(../fonts/12136.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Sirona';
+    src: url(../fonts/10755.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Marta';
+    src: url(../fonts/Marta.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'PF Centro Slab Pro Regular';
+    src: url('../fonts/PF Centro Slab Pro.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Courier10 Cyr BT Bold Italic';
+    src: url('../fonts/Courier10 Cyr BT.ttf') format('truetype');
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    color: darkslategray;
+    background: rgb(158, 245, 240);
+    font-family: PF Centro Slab Pro Regular;
+}
+
+h1,h2,h3,h4,h5{
+    font-family: As-Nova Regular;
+}
+
+/* section */
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 50px 8vw;
+    box-sizing: border-box;
+    background: #f0f8ff;
+}
+
+h1 {
+    font-size: 60px;
+    margin: 0;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* double-parallax */
+.parallax {
+    height: 60vh;
+    overflow: hidden;
+}
+
+.p-active {
+    position: relative;
+}
+
+    .p-active > div {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background-size: cover;
+        background-position: center;
+    }
+
+        .p-active > div:first-child {
+            filter: blur(2px);
+        }
+
+        .p-active > div:last-child {
+        }
+
+.p-passive {
+    line-height: 60vh;
+    background: rgba(0, 14, 59, 0.35);
+    color: #e8f4ff;
+    text-align: center;
+    font-size: 100px;
+    font-family: As-Nova Regular;
+}
+
+/* v-sec */
+.content {
+    margin-top: 30px;
+    font-size: 25px;
+}

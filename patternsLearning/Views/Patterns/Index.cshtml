@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Паттерны";
+}
+<v-sec :name="'Паттерны'">
+    <div class="pattern-categories">
+        <category :name="category.cat_name" :description="category.cat_description" :article="category.article" v-for="category in categories"></category>
+    </div>
+    <div v-if="showInfo">{{info}}</div>
+</v-sec>
+
+@section styles{
+    @Styles.Render("~/Content/patterns")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/patterns")
+}
