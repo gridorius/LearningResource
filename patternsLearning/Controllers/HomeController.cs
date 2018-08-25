@@ -18,7 +18,7 @@ namespace patternsLearning.Controllers
             return View();
         }
 
-        public ActionResult BriefDescription() {
+        public JObject BriefDescription() {
             siteDbEntities1 db;
             try
             {
@@ -37,13 +37,12 @@ namespace patternsLearning.Controllers
                     }
                     }
                         );
-                ViewBag.descJSON = description;
-                return PartialView();
+                return description;
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return PartialView();
+                return new JObject(
+                    new JProperty("error", ex.Message));
             }
         }
     }
