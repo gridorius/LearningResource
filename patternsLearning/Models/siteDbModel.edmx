@@ -55,10 +55,11 @@
             <PropertyRef Name="sec_id" />
           </Key>
           <Property Name="sec_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sec_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sec_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="sec_description" Type="ntext" />
           <Property Name="sec_front_pic" Type="varchar(max)" />
           <Property Name="sec_back_pic" Type="varchar(max)" />
+          <Property Name="sec_controller" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Article_ToCategory">
           <End Role="category" Type="Self.category" Multiplicity="1" />
@@ -174,11 +175,12 @@
             <PropertyRef Name="sec_id" />
           </Key>
           <Property Name="sec_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sec_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sec_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="sec_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sec_front_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sec_back_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="category" Relationship="siteDbModel.FK_category_ToSection" FromRole="section" ToRole="category" />
+          <Property Name="sec_controller" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_category_ToSection">
           <End Type="siteDbModel.section" Role="section" Multiplicity="1" />
@@ -288,6 +290,7 @@
           <EntitySetMapping Name="section">
             <EntityTypeMapping TypeName="siteDbModel.section">
               <MappingFragment StoreEntitySet="section">
+                <ScalarProperty Name="sec_controller" ColumnName="sec_controller" />
                 <ScalarProperty Name="sec_back_pic" ColumnName="sec_back_pic" />
                 <ScalarProperty Name="sec_front_pic" ColumnName="sec_front_pic" />
                 <ScalarProperty Name="sec_description" ColumnName="sec_description" />
