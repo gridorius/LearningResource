@@ -29,39 +29,57 @@ Vue.component('v-sec', {
             <section>
                 <h1 v-if='!src1 && !src2 && name'>{{name}}</h1>
                 <div><slot></slot></div>
+                <m-content><a class='detailed' v-if='a' :href='a'>{{name}}</a></m-content>
             </section>
         </div>
     `,
-    props: ['src1', 'src2', 'name'],
+    props: ['src1', 'src2', 'name','a'],
 });
 
-Vue.component('m-code', {
+Vue.component('m-content', {
     template: `
-        <div class='code'><slot></slot></div>
+        <div class='content'><slot></slot></div>
     `
 });
 
 Vue.component('m-article', {
     template: `
         <div class='article'>
-            <v-sec :name='art.art_name'>{{art.art_description}}</v-sec>
-            <v-sec :src2='bp.base_part_pic' v-for='bp in art.base_part'>
-                <h1>{{bp.base_part_name}}</h1>
-                <div v-html='bp.base_part_description'></div>
-                <div>{{bp.base_part_info}}</div>
-            </v-sec>
-            <v-sec :src2='sp.sample_part_pic' v-for='sp in art.sample_part'>
-                <h1>{{sp.sample_part_name}}</h1>
-                <div>{{sp.sample_part_description}}</div>
-                <div>{{sp.sample_part_info}}</div>
-                <h2>Пример кода</h2>
-                <div v-html="sp.sample_part_code"></div>
-                <a :href='sp.sample_part_gitref'>GitHub</a>
+            <div class='close' @click='$root.article = false'>X</div>
+            <v-sec :name='art.art_name'><m-content>{{art.art_description}}
+                    <h2>Мотивация</h2>
+                    {{art.art_motivation}}
+            </m-content></v-sec>
+            <v-sec :src2='art.art_pic'>
+                <div v-for='bp in art.base_part'>
+                    <m-content>
+                        <h2>{{bp.base_part_name}}</h2>
+                        <div v-html='bp.base_part_description'></div>
+                        <div>{{bp.base_part_info}}</div>
+                        <center>
+                            <h2>UML</h2>
+                            <img :src='bp.base_part_pic'/>
+                        </center>
+                    </m-content>
+                </div>                                
+                <div v-for='sp in art.sample_part'>
+                    <m-content>
+                        <h2>{{sp.sample_part_name}}</h2>
+                        <div>{{sp.sample_part_description}}</div>
+                        <div>{{sp.sample_part_info}}</div>
+                        <center>
+                            <h2>UML</h2>
+                            <img :src='sp.sample_part_pic'/>
+                        </center>
+                        <h2>Пример кода</h2>
+                        <div class='code' v-html='sp.sample_part_code'></div><br>
+                        <h2>Минусы</h2>
+                        <div>{{art.art_note}}</div><br>
+                        <div> Реализация на <a :href='sp.sample_part_gitref'>GitHub</a></div>
+                    </m-content>
+                </div>
             </v-sec>
         </div>
     `,
     props: ['art'],
-    created() {
-        alert(this.art.sample_part[0].sample_part_code);
-    }
 });

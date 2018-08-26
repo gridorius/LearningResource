@@ -1,19 +1,23 @@
-﻿h1,
-h2 {
-    text-align: center;
-    cursor: pointer;
-}
-
-h1.patterns-previev {
+﻿h1.patterns-previev {
     font-size: 60px;
     transform: scale(3) translateY(50px);
     animation: preview .3s linear 1s both;
+    text-align: center;
 }
 
 h2 {
     padding: 10px;
     font-size: 35px;
+}
+
+h2.catergory {
     background: rgb(215, 225, 85);
+    text-align: center;
+    cursor: pointer;
+}
+
+.pattern {
+    cursor: pointer;
 }
 
 .pattern-categories {
@@ -58,6 +62,10 @@ ul.open {
         .pattern-categories > div {
             padding: 0;
         }
+}
+
+img{
+    width:45vw;
 }
 
 @keyframes preview {

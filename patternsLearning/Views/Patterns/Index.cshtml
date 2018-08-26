@@ -3,11 +3,13 @@
 }
 <m-article v-if="article" :art="article"></m-article>
 <v-sec>
-    <h1 class="patterns-previev"></h1>
-    <div class="pattern-categories">
-        <category :name="category.cat_name" :description="category.cat_description" :article="category.article" v-for="category in categories"></category>
-    </div>
-    <div v-if="showInfo">{{info}}</div>
+    <m-content>
+        <h1 class="patterns-previev" v-on:animationend="showInfo = true">Паттерны</h1>
+        <div class="pattern-categories">
+            <category :name="category.cat_name" :description="category.cat_description" :article="category.article" v-for="category in categories"></category>
+        </div>
+        <div v-if="showInfo">{{info}}</div>
+    </m-content>
 </v-sec>
 
 @section styles{

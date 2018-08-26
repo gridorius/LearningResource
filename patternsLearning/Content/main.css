@@ -32,32 +32,8 @@ body {
 }
 
 h1,h2,h3,h4,h5{
+    padding:20px;
     font-family: As-Nova Regular;
-}
-
-/* section */
-section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    padding: 50px 8vw;
-    box-sizing: border-box;
-    background: #f0f8ff;
-}
-
-h1 {
-    font-size: 60px;
-    margin: 0;
-    text-align: center;
-}
-
-h2 {
-    font-weight: 400;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
 }
 
 /* double-parallax */
@@ -95,11 +71,54 @@ a {
     font-family: As-Nova Regular;
 }
 
-/* v-sec */
-.content {
-    margin-top: 30px;
-    font-size: 25px;
+/* section */
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background: #f0f8ff;
 }
+
+.content {
+    position:relative;
+    padding: 50px 8vw;
+    font-size:20px;
+}
+
+.code {
+    border: 2px solid green;
+    box-shadow: inset 2px 2px 5px 5px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 60px;
+    margin: 0;
+    text-align: center;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover{
+    color:green;
+}
+
+    a.detailed {
+        position: absolute;
+        padding: 15px;
+        bottom: 10px;
+        left: 8vw;
+        background: rgb(63, 150, 142);
+    }
+
 
 /* article */
 .article{
@@ -108,3 +127,19 @@ a {
     min-height: 100vh;
     z-index:999;
 }
+
+.close{
+    position:fixed;
+    right:0px;
+    font-size:40px;
+    padding:10px;
+    color:rgb(255, 70, 70);
+    background:rgba(255, 0, 0, 0.2);
+    z-index:999;
+    cursor:pointer;
+    transition:all .1s linear;
+}
+
+    .close:hover {
+        background: rgba(255, 0, 0, 0);
+    }
