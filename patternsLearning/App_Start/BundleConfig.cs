@@ -35,6 +35,12 @@ namespace patternsLearning
 
             bundles.Add(new StyleBundle("~/Content/home").Include(
                         "~/Content/home.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                        "~/Scripts/admin.js"));
+
+            bundles.Add(new StyleBundle("~/Content/admin").Include(
+                      "~/Content/admin.css"));
         }
     }
 }

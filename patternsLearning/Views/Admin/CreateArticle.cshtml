@@ -1,0 +1,59 @@
+﻿<div class='article'>
+    <v-sec>
+        <m-content>
+            <h1><textarea v-model="article.art_name" placeholder="art_name"></textarea></h1>
+            <textarea v-model="article.art_description" placeholder="art_description"></textarea>
+            <h2>Мотивация</h2>
+            <textarea v-model="article.art_motivation" placeholder="art_motivation"></textarea>
+        </m-content>
+    </v-sec>
+    <v-sec :src2='article.art_pic'>
+        <m-content>
+            <textarea v-model="article.art_pic" placeholder="art_pic"></textarea>
+        </m-content>
+            <m-content>
+                <label>base_need <input type="checkbox" v-model="base_need" /></label>
+            </m-content>
+            <div v-if="base_need">
+                <m-content>
+                    <h2><textarea v-model="base_part.base_part_name" placeholder="base_part_name"></textarea></h2>
+                    <div><textarea v-model="base_part.base_part_description" placeholder="base_part_description"></textarea></div>
+                    <div><textarea v-model="base_part.base_part_info" placeholder="base_part_info"></textarea></div>
+                    <center>
+                        <h2>UML</h2>
+                        <img :src='base_part.base_part_pic' />
+                        <textarea v-model="base_part.base_part_pic" placeholder="base_part_pic"></textarea>
+                    </center>
+                </m-content>
+            </div>
+            <m-content>
+                <label>sample_need<input type="checkbox" v-model="sample_need" /></label>
+            </m-content>
+            <div v-if="sample_need">
+                <m-content>
+                    <h2><textarea v-model="sample_part.sample_part_name" placeholder="sample_part_name"></textarea></h2>
+                    <div><textarea v-model="sample_part.sample_part_description" placeholder="sample_part_description"></textarea></div>
+                    <div><textarea v-model="sample_part.sample_part_info" placeholder="sample_part_info"></textarea></div>
+                    <center>
+                        <h2>UML</h2>
+                        <img :src='sample_part.sample_part_pic' />
+                        <textarea v-model="sample_part.sample_part_pic" placeholder="sample_part_pic"></textarea>
+                    </center>
+                    <h2>Пример кода</h2>
+                    <textarea v-model="sample_part.sample_part_code" placeholder="sample_part_code"></textarea>
+                    <div class='code' v-html='sample_part.sample_part_code'></div><br>
+                    <h2>Минусы</h2>
+                    <div><textarea v-model="article.art_note" placeholder="art_note"></textarea></div><br>
+                    <textarea v-model="article.sample_part_gitref" placeholder="sample_part_gitref"></textarea>
+                </m-content>
+            </div>
+    </v-sec>
+</div>
+
+@section styles{
+    @Styles.Render("~/Content/admin")
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/admin")
+}
