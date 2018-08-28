@@ -175,6 +175,7 @@
     <Compile Include="Models\category.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SamplePartConstruct.cs" />
     <Compile Include="Models\sample_part.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
