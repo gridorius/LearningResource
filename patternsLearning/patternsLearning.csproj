@@ -201,6 +201,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\User.mdf" />
+    <Content Include="App_Data\User_log.ldf">
+      <DependentUpon>User.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\admin.css" />
     <Content Include="Content\home.css" />
     <Content Include="Content\main.css" />
@@ -241,14 +245,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
-    <Folder Include="fonts\" />
-    <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Views\Home\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\10755.otf" />
     <Content Include="fonts\12136.ttf" />
