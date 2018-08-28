@@ -5,7 +5,7 @@ using System.Web;
 
 namespace patternsLearning.Models
 {
-    public class SamplePartConstruct
+    public class SamplePartConstructModel
     {
         //пример
         public bool sample_need { get; set; } // эт для чекбокса другого
