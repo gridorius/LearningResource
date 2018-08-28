@@ -197,6 +197,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>siteDbModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>userModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>userModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="PageStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -217,6 +235,16 @@
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Models\userModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>userModel.edmx</DependentUpon>
+      <LastGenOutput>userModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\userModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>userModel.edmx</DependentUpon>
+      <LastGenOutput>userModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\home.js" />
@@ -258,6 +286,13 @@
     </EntityDeploy>
     <Content Include="Models\siteDbModel.edmx.diagram">
       <DependentUpon>siteDbModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\userModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>userModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\userModel.edmx.diagram">
+      <DependentUpon>userModel.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Patterns\Index.cshtml" />
