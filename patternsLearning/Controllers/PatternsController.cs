@@ -16,15 +16,12 @@ namespace patternsLearning.Controllers
             return View();
         }
 
-        //ya pidoras
         public JObject PatternPageStructure()
         {
-            siteDbEntities1 db;
             string secName = "Паттерны проектирования";
             try
             {
-                db = new siteDbEntities1();
-                return PageStructure.getSection(db, secName);
+                return PageStructure.getSection(secName);
             }
             catch (Exception ex)
             {
@@ -35,15 +32,13 @@ namespace patternsLearning.Controllers
 
         public JObject Articles(ArticleModel art)
         {
-            siteDbEntities1 db;
             string artName;
             PattentFactory factory;
             try
             {
-                db = new siteDbEntities1();
                 artName = art.artName;
                 factory = new PattentFactory();
-                return factory.getJSON(db, artName);
+                return factory.getJSON(artName);
             }
             catch (Exception ex) {
                 return new JObject(
