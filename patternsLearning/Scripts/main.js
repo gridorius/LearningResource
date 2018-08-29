@@ -1,17 +1,18 @@
 ﻿Vue.component('double-parallax', {
     template: `
-        <div class='parallax'>
+        <div class='parallax' :style='{height:height}' ref='cont'>
             <div class='p-active' ref='img'>
                 <div :style="{backgroundImage:'url('+src2+')',transform:'translateY('+(y/2-100)+'px)'}"></div>
                 <div :style="{backgroundImage:'url('+src1+')',transform:'translateY('+(y/3)+'px)'}"></div>
             </div>
-            <div class='p-passive'><slot></slot></div>
+            <div class='p-passive' :style="{lineHeight:height || '60vh'}"><slot></slot></div>
         </div>
     `,
-    props: ['src1', 'src2'],
+    props: ['src1', 'src2','height'],
     data() {
         return {
             y: 0,
+            lh:0,
         };
     },
     created() {
@@ -19,21 +20,20 @@
             this.y = -this.$refs.img.getBoundingClientRect().y;
         });
     }
-
 });
 
 Vue.component('v-sec', {
     template: `
         <div>
-            <double-parallax v-if='src1 || src2' :src1='src1' :src2='src2'>{{name}}</double-parallax>
+            <double-parallax v-if='src1 || src2' :height='parallaxHeight' :src1='src1' :src2='src2'>{{name}}</double-parallax>
             <section>
                 <h1 v-if='!src1 && !src2 && name'>{{name}}</h1>
                 <div><slot></slot></div>
-                <m-content><a class='detailed' v-if='a' :href='a'>{{name}}</a></m-content>
+                <m-content v-if='a'><a class='detailed'  :href='a'>{{name}}</a></m-content>
             </section>
         </div>
     `,
-    props: ['src1', 'src2', 'name','a'],
+    props: ['src1', 'src2', 'name','a','parallaxHeight'],
 });
 
 Vue.component('m-content', {
@@ -45,12 +45,15 @@ Vue.component('m-content', {
 Vue.component('m-article', {
     template: `
         <div class='article'>
-            <div class='close' @click='$root.article = false'>X</div>
-            <v-sec :name='art.art_name'><m-content>{{art.art_description}}
+            <div class='close' @click='$root.article = false'>✖</div>
+            <v-sec :parallax-height="'100vh'"  :src1='art.art_pic' :name='art.art_name'>
+                <m-content>
+                    {{art.art_description}}
                     <h2>Мотивация</h2>
                     {{art.art_motivation}}
-            </m-content></v-sec>
-            <v-sec :src2='art.art_pic'>
+               </m-content>
+            </v-sec>
+            <v-sec>
                 <div v-for='bp in art.base_part'>
                     <m-content>
                         <h2>{{bp.base_part_name}}</h2>

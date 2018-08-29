@@ -24,5 +24,16 @@
         },
         base_need: false,
         sample_need:false,
+    },
+    methods: {
+        add() {
+            let data = new FormData();
+            data.append('article', this.article);
+            data.append('base_part',this.base_part);
+            data.append('sample_part',this.sample_part);
+            data.append('base_need',this.base_need);
+            data.append('sample_need', this.sample_need);
+            fetch('urlAuthorize');
+        }
     }
 });
