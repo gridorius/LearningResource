@@ -17,25 +17,26 @@ namespace patternsLearning.Controllers
         }
 
         public JObject BriefDescription() {
-            siteDbEntities1 db;
             try
             {
-                db = new siteDbEntities1();
-                JObject description = JObject.FromObject(
-                    new
-                    {
-                        art =
-                    from s in db.section
-                    select new
-                    {
-                        sec_name = s.sec_name,
-                        sec_description = s.sec_description,
-                        sec_front_pic = s.sec_front_pic,
-                        sec_back_pic = s.sec_back_pic
-                    }
-                    }
-                        );
-                return description;
+                using (siteDbEntities1 db = new siteDbEntities1())
+                {
+                    JObject description = JObject.FromObject(
+                        new
+                        {
+                            art =
+                        from s in db.section
+                        select new
+                        {
+                            sec_name = s.sec_name,
+                            sec_description = s.sec_description,
+                            sec_front_pic = s.sec_front_pic,
+                            sec_back_pic = s.sec_back_pic
+                        }
+                        }
+                            );
+                    return description;
+                }
             }
             catch (Exception ex)
             {
