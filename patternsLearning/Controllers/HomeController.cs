@@ -16,9 +16,12 @@ namespace patternsLearning.Controllers
             return View();
         }
 
-        public JObject BriefDescription() {
+        public List<JObject> BriefDescription()
+        {
+            List<JObject> list;
             try
             {
+                list = new List<JObject>();
                 using (siteDbEntities1 db = new siteDbEntities1())
                 {
                     JObject description = JObject.FromObject(
@@ -35,17 +38,20 @@ namespace patternsLearning.Controllers
                             sec_controller = s.sec_controller
 
                         },
-                            list = PageStructure.getListSource()
-                }
+                        }
             );
-                    return description;
+                    list.Add(description);
+                    list.Add(PageStructure.getListSource());
+                    return list;
                 }
 
             }
             catch (Exception ex)
             {
-                return new JObject(
-                    new JProperty("error", ex.Message));
+                list = new List<JObject>();
+                list.Add(new JObject(
+                    new JProperty("error", ex.Message)));
+                return list;
             }
         }
     }
