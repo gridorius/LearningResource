@@ -9,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace patternsLearning.Controllers
 {
-    public class HomeController : Controller 
+    public class HomeController : Controller
     {
         public ActionResult Index()
         {
@@ -33,11 +33,14 @@ namespace patternsLearning.Controllers
                             sec_front_pic = s.sec_front_pic,
                             sec_back_pic = s.sec_back_pic,
                             sec_controller = s.sec_controller
-                        }
-                        }
-                            );
+
+                        },
+                            list = PageStructure.getListSource()
+                }
+            );
                     return description;
                 }
+
             }
             catch (Exception ex)
             {
