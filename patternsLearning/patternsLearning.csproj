@@ -175,6 +175,9 @@
     <Compile Include="Models\category.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\list_source.cs">
+      <DependentUpon>siteDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SamplePartConstruct.cs" />
     <Compile Include="Models\sample_part.cs">
       <DependentUpon>siteDbModel.tt</DependentUpon>
@@ -239,14 +242,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
-    <Folder Include="fonts\" />
-    <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Views\Home\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\10755.otf" />
     <Content Include="fonts\12136.ttf" />

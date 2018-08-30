@@ -30,5 +30,6 @@ namespace patternsLearning.Models
         public virtual DbSet<article> article { get; set; }
         public virtual DbSet<base_part> base_part { get; set; }
         public virtual DbSet<sample_part> sample_part { get; set; }
+        public virtual DbSet<list_source> list_source { get; set; }
     }
 }
