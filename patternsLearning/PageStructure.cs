@@ -10,6 +10,7 @@ namespace patternsLearning
 {
     public static class PageStructure
     {
+        // get langing structure
         public static JObject getSection(string secName)
         {
             using (siteDbEntities1 db = new siteDbEntities1())
@@ -38,6 +39,42 @@ namespace patternsLearning
                     }
                 });
                 return sectionJSON;
+            }
+        }
+
+        // get list of all sources
+        public static JObject getListSource() {
+            using (siteDbEntities1 db = new siteDbEntities1()) {
+                return JObject.FromObject(
+                    new {
+                        list = from l in db.list_source
+                        orderby l.sec_id, l.list_type
+                        select new {
+                            list_name=l.list_name,
+                            list_author=l.list_author,
+                            list_type = l.list_type,
+                            list_url=l.list_url
+                        }
+            }
+                    );
+            }
+        }
+
+        // get list of a concrete section
+        public static JObject getListSource(string secName) {
+            using (siteDbEntities1 db = new siteDbEntities1()) {
+                int secId = db.section.Where(n => n.sec_name == secName).Select(s => s.sec_id).SingleOrDefault();
+                return JObject.FromObject(new {
+                    list = from l in db.list_source
+                           where l.sec_id == secId
+                           orderby l.list_type
+                           select new {
+                               list_name = l.list_name,
+                               list_author = l.list_author,
+                               list_type = l.list_type,
+                               list_url = l.list_url
+                           }
+                });
             }
         }
     }
