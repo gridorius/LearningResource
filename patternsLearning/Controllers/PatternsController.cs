@@ -18,10 +18,10 @@ namespace patternsLearning.Controllers
 
         public JObject PatternPageStructure()
         {
-            string secName = "Паттерны проектирования";
+            int secID = 1;
             try
             {
-                return PageStructure.getSection(secName);
+                return PageStructure.getSection(secID);
             }
             catch (Exception ex)
             {
@@ -32,13 +32,13 @@ namespace patternsLearning.Controllers
 
         public JObject Articles(ArticleModel art)
         {
-            string artName;
+            int artId;
             PattentFactory factory;
             try
             {
-                artName = art.artName;
+                artId = art.artId;
                 factory = new PattentFactory();
-                return factory.getJSON(artName);
+                return factory.getJSON(artId);
             }
             catch (Exception ex) {
                 return new JObject(

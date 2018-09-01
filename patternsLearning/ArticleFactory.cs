@@ -10,17 +10,17 @@ namespace patternsLearning
 {
     public interface IArticleFactory
     {
-        JObject getJSON(string artName);
+        JObject getJSON(int artId);
     }
 
     public class PattentFactory : IArticleFactory {
 
-        public JObject getJSON(string artName) {
+        public JObject getJSON(int artId) {
             using (siteDbEntities1 db = new siteDbEntities1())
             {
                 return JObject.FromObject(new {
             article = from a in db.article
-                      where a.art_name == artName
+                      where a.art_id == artId
                       select new
                       {
                           art_name = a.art_name,
@@ -54,7 +54,7 @@ namespace patternsLearning
 
     public class AlgorithmFactory : IArticleFactory {
 
-        public JObject getJSON(string artName) {
+        public JObject getJSON(int artId) {
             using (siteDbEntities1 db = new siteDbEntities1())
             {
                 return new JObject();

@@ -11,27 +11,30 @@ namespace patternsLearning
     public static class PageStructure
     {
         // get langing structure
-        public static JObject getSection(string secName)
+        public static JObject getSection(int secId)
         {
             using (siteDbEntities1 db = new siteDbEntities1())
             {
-                var section = db.section.Where(s => s.sec_name == secName).Single();
+                var section = db.section.Where(s => s.sec_id == secId).Single();
                 JObject sectionJSON = JObject.FromObject(new
                 {
                     section = new
                     {
+                        secId = secId,
                         sec_name = section.sec_name,
                         sec_description = section.sec_description,
                         category = from c in db.category
                                    where c.sec_id == section.sec_id
                                    select new
                                    {
+                                       cat_id = c.cat_id,
                                        cat_name = c.cat_name,
                                        cat_description = c.cat_description,
                                        article = from a in db.article
                                                  where a.cat_id == c.cat_id
                                                  select new
                                                  {
+                                                     art_id=a.art_id,
                                                      art_name = a.art_name,
                                                      art_description = a.art_description
                                                  }
@@ -61,9 +64,8 @@ namespace patternsLearning
         }
 
         // get list of a concrete section
-        public static JObject getListSource(string secName) {
+        public static JObject getListSource(int secId) {
             using (siteDbEntities1 db = new siteDbEntities1()) {
-                int secId = db.section.Where(n => n.sec_name == secName).Select(s => s.sec_id).SingleOrDefault();
                 return JObject.FromObject(new {
                     list = from l in db.list_source
                            where l.sec_id == secId
