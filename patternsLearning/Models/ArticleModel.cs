@@ -7,6 +7,7 @@ namespace patternsLearning.Models
 {
     public class ArticleModel
     {
-        public string artName { get; set; }
+        
+        public int artId { get; set; }
     }
 }
