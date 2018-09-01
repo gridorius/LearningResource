@@ -16,12 +16,11 @@ namespace patternsLearning.Controllers
             return View();
         }
 
-        public List<JObject> BriefDescription()
+        public JArray BriefDescription()
         {
-            List<JObject> list;
+            JArray list = new JArray();
             try
             {
-                list = new List<JObject>();
                 using (siteDbEntities1 db = new siteDbEntities1())
                 {
                     JObject description = JObject.FromObject(
@@ -48,7 +47,6 @@ namespace patternsLearning.Controllers
             }
             catch (Exception ex)
             {
-                list = new List<JObject>();
                 list.Add(new JObject(
                     new JProperty("error", ex.Message)));
                 return list;
