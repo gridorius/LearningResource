@@ -313,7 +313,7 @@
     <Content Include="Views\Patterns\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Algorithms\Index.cshtml" />
-    <Content Include="Views\AdminPanel\CreateArticle.cshtml" />
+    <Content Include="Views\AdminPanel\EditArticle.cshtml" />
     <Content Include="Views\Assign\Index.cshtml" />
     <Content Include="Views\AdminPanel\Index.cshtml" />
   </ItemGroup>
