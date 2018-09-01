@@ -317,7 +317,9 @@
     <Content Include="Views\Patterns\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Algorithms\Index.cshtml" />
-    <Content Include="Views\Admin\CreateArticle.cshtml" />
+    <Content Include="Views\AdminPanel\CreateArticle.cshtml" />
+    <Content Include="Views\Assign\Index.cshtml" />
+    <Content Include="Views\AdminPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
