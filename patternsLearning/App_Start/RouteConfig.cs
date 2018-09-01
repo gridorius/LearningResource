@@ -12,6 +12,7 @@ namespace patternsLearning
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.IgnoreRoute("Patterns/undefined");
 
             routes.MapRoute(
                 name: "Default",

@@ -37,6 +37,17 @@
           <Property Name="cat_description" Type="ntext" />
           <Property Name="sec_id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="list_source">
+          <Key>
+            <PropertyRef Name="list_id" />
+          </Key>
+          <Property Name="list_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="list_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="list_author" Type="nvarchar" MaxLength="100" />
+          <Property Name="list_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="list_url" Type="varchar(max)" />
+          <Property Name="sec_id" Type="int" />
+        </EntityType>
         <EntityType Name="sample_part">
           <Key>
             <PropertyRef Name="sample_part_id" />
@@ -55,10 +66,11 @@
             <PropertyRef Name="sec_id" />
           </Key>
           <Property Name="sec_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sec_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sec_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="sec_description" Type="ntext" />
           <Property Name="sec_front_pic" Type="varchar(max)" />
           <Property Name="sec_back_pic" Type="varchar(max)" />
+          <Property Name="sec_controller" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Article_ToCategory">
           <End Role="category" Type="Self.category" Multiplicity="1" />
@@ -96,6 +108,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ListSource_ToSection">
+          <End Role="section" Type="Self.section" Multiplicity="0..1" />
+          <End Role="list_source" Type="Self.list_source" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="section">
+              <PropertyRef Name="sec_id" />
+            </Principal>
+            <Dependent Role="list_source">
+              <PropertyRef Name="sec_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_sample_part_ToArticle">
           <End Role="article" Type="Self.article" Multiplicity="1" />
           <End Role="sample_part" Type="Self.sample_part" Multiplicity="*" />
@@ -112,6 +136,7 @@
           <EntitySet Name="article" EntityType="Self.article" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="base_part" EntityType="Self.base_part" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="list_source" EntityType="Self.list_source" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sample_part" EntityType="Self.sample_part" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="section" EntityType="Self.section" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Article_ToCategory" Association="Self.FK_Article_ToCategory">
@@ -125,6 +150,10 @@
           <AssociationSet Name="FK_category_ToSection" Association="Self.FK_category_ToSection">
             <End Role="section" EntitySet="section" />
             <End Role="category" EntitySet="category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListSource_ToSection" Association="Self.FK_ListSource_ToSection">
+            <End Role="section" EntitySet="section" />
+            <End Role="list_source" EntitySet="list_source" />
           </AssociationSet>
           <AssociationSet Name="FK_sample_part_ToArticle" Association="Self.FK_sample_part_ToArticle">
             <End Role="article" EntitySet="article" />
@@ -157,6 +186,11 @@
             <End Role="article" EntitySet="article" />
             <End Role="sample_part" EntitySet="sample_part" />
           </AssociationSet>
+          <EntitySet Name="list_source" EntityType="siteDbModel.list_source" />
+          <AssociationSet Name="FK_ListSource_ToSection" Association="siteDbModel.FK_ListSource_ToSection">
+            <End Role="section" EntitySet="section" />
+            <End Role="list_source" EntitySet="list_source" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="category">
           <Key>
@@ -174,11 +208,13 @@
             <PropertyRef Name="sec_id" />
           </Key>
           <Property Name="sec_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sec_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sec_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="sec_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sec_front_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="sec_back_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="category" Relationship="siteDbModel.FK_category_ToSection" FromRole="section" ToRole="category" />
+          <Property Name="sec_controller" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="list_source" Relationship="siteDbModel.FK_ListSource_ToSection" FromRole="section" ToRole="list_source" />
         </EntityType>
         <Association Name="FK_category_ToSection">
           <End Type="siteDbModel.section" Role="section" Multiplicity="1" />
@@ -269,6 +305,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="list_source">
+          <Key>
+            <PropertyRef Name="list_id" />
+          </Key>
+          <Property Name="list_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="list_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="list_author" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="list_type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="list_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sec_id" Type="Int32" />
+          <NavigationProperty Name="section" Relationship="siteDbModel.FK_ListSource_ToSection" FromRole="list_source" ToRole="section" />
+        </EntityType>
+        <Association Name="FK_ListSource_ToSection">
+          <End Type="siteDbModel.section" Role="section" Multiplicity="0..1" />
+          <End Type="siteDbModel.list_source" Role="list_source" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="section">
+              <PropertyRef Name="sec_id" />
+            </Principal>
+            <Dependent Role="list_source">
+              <PropertyRef Name="sec_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -288,6 +348,7 @@
           <EntitySetMapping Name="section">
             <EntityTypeMapping TypeName="siteDbModel.section">
               <MappingFragment StoreEntitySet="section">
+                <ScalarProperty Name="sec_controller" ColumnName="sec_controller" />
                 <ScalarProperty Name="sec_back_pic" ColumnName="sec_back_pic" />
                 <ScalarProperty Name="sec_front_pic" ColumnName="sec_front_pic" />
                 <ScalarProperty Name="sec_description" ColumnName="sec_description" />
@@ -332,6 +393,18 @@
                 <ScalarProperty Name="sample_part_description" ColumnName="sample_part_description" />
                 <ScalarProperty Name="sample_part_name" ColumnName="sample_part_name" />
                 <ScalarProperty Name="sample_part_id" ColumnName="sample_part_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="list_source">
+            <EntityTypeMapping TypeName="siteDbModel.list_source">
+              <MappingFragment StoreEntitySet="list_source">
+                <ScalarProperty Name="sec_id" ColumnName="sec_id" />
+                <ScalarProperty Name="list_url" ColumnName="list_url" />
+                <ScalarProperty Name="list_type" ColumnName="list_type" />
+                <ScalarProperty Name="list_author" ColumnName="list_author" />
+                <ScalarProperty Name="list_name" ColumnName="list_name" />
+                <ScalarProperty Name="list_id" ColumnName="list_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

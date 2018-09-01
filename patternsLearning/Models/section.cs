@@ -18,6 +18,7 @@ namespace patternsLearning.Models
         public section()
         {
             this.category = new HashSet<category>();
+            this.list_source = new HashSet<list_source>();
         }
     
         public int sec_id { get; set; }
@@ -25,8 +26,11 @@ namespace patternsLearning.Models
         public string sec_description { get; set; }
         public string sec_front_pic { get; set; }
         public string sec_back_pic { get; set; }
+        public string sec_controller { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<category> category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<list_source> list_source { get; set; }
     }
 }
